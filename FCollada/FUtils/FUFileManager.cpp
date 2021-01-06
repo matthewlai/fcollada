@@ -213,9 +213,6 @@ bool FUFileManager::MakeDirectory(const fstring& directory)
 	if (err == EEXIST) return true;
 #elif defined(LINUX) || defined(__APPLE__)
 	if (mkdir(TO_STRING(absoluteDirectory).c_str(), ~0u) == 0) return true; // I think this means all permissions..
-#elif defined(__APPLE__)
-	fm::string _fname = TO_STRING(directory);
-	OSErr err = AddFolderDescriptor('extn', 0, 'relf', 0, 0, 0, (ConstStrFileNameParam)_fname.c_str(), false);
 #endif // WIN32
 
 	return false;
